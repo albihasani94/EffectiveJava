@@ -1,28 +1,17 @@
 package chapter1.item1;
 
-import java.time.LocalDateTime;
-
 public class WagonTrackingData {
 
     private String currentLocation;
 
-    private String destinationLocation;
-
     private String originLocation;
 
-    private LocalDateTime lastStatusCheck;
-
-    private LocalDateTime estimatedArrivalDate;
+    private String destinationLocation;
 
     public WagonTrackingData(String currentLocation, String originLocation, String destinationLocation) {
         this.currentLocation = currentLocation;
-        this.destinationLocation = destinationLocation;
         this.originLocation = originLocation;
-    }
-
-    public WagonTrackingData(LocalDateTime lastStatusCheck, LocalDateTime estimatedArrivalDate) {
-        this.lastStatusCheck = lastStatusCheck;
-        this.estimatedArrivalDate = estimatedArrivalDate;
+        this.destinationLocation = destinationLocation;
     }
 
     public static WagonTrackingData ofCurrentAndOriginAndDestinationLocation(String currentLocation, String originLocation, String destinationLocation) {
@@ -53,19 +42,12 @@ public class WagonTrackingData {
         this.originLocation = originLocation;
     }
 
-    public LocalDateTime getLastStatusCheck() {
-        return lastStatusCheck;
-    }
-
-    public void setLastStatusCheck(LocalDateTime lastStatusCheck) {
-        this.lastStatusCheck = lastStatusCheck;
-    }
-
-    public LocalDateTime getEstimatedArrivalDate() {
-        return estimatedArrivalDate;
-    }
-
-    public void setEstimatedArrivalDate(LocalDateTime estimatedArrivalDate) {
-        this.estimatedArrivalDate = estimatedArrivalDate;
+    @Override
+    public String toString() {
+        return "WagonTrackingData{" +
+                "currentLocation='" + currentLocation + '\'' +
+                ", originLocation='" + originLocation + '\'' +
+                ", destinationLocation='" + destinationLocation + '\'' +
+                '}';
     }
 }
