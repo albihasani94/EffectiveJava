@@ -1,4 +1,4 @@
-package chapter1.item1;
+package item1;
 
 public class Evaluation {
 

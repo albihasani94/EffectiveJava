@@ -1,4 +1,4 @@
-package chapter1.item2;
+package item2;
 
 import java.time.LocalDate;
 

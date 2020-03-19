@@ -1,4 +1,4 @@
-package chapter1.item1;
+package item1;
 
 //Item 1: Consider static factory methods instead of constructors
 public class Application {
