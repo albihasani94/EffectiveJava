@@ -5,14 +5,12 @@ public class Application {
 
     public static void main(String[] args) {
 
-        //It is harder to know the parameters order
-        WagonTrackingData wagonTrackingDataViaConstructor = new WagonTrackingData("testdest", "testOrigin", "testCurrent");
-        System.out.println(wagonTrackingDataViaConstructor);
-
         //It is now easier to describe the parameters order in the name of the static factory method
-        WagonTrackingData wagonTrackingDataViaStaticFactory = WagonTrackingData.ofCurrentAndOriginAndDestinationLocation("tirane", "sarande", "Mars");
-        System.out.println(wagonTrackingDataViaStaticFactory);
+        WagonTrackingData wagonTrackingData = WagonTrackingData.ofCurrentAndOriginAndDestinationLocation("tirane", "sarande", "Mars");
+        System.out.println(wagonTrackingData);
 
+        WagonTrackingData wagonTrackingDataCurrentLocation = WagonTrackingData.ofCurrentLocation("Sarande");
+        System.out.println(wagonTrackingDataCurrentLocation);
 
         //Check that objects are created only once for each boolean
         System.out.println("Testing evaluation with static factory method");
@@ -27,6 +25,5 @@ public class Application {
         new Evaluation(false);
         new Evaluation(false);
         new Evaluation(true);
-
     }
 }

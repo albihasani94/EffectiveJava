@@ -5,7 +5,6 @@ public class Evaluation {
     private int value;
 
     public static final Evaluation ONE = new Evaluation(true);
-
     public static Evaluation ZERO = new Evaluation(false);
 
     public Evaluation(boolean bol) {
