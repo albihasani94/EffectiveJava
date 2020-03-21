@@ -1,4 +1,4 @@
-package item1;
+package com.albi.ch2.item1;
 
 public class WagonTrackingData {
 

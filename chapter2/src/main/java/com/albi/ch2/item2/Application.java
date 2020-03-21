@@ -1,4 +1,4 @@
-package item2;
+package com.albi.ch2.item2;
 
 import java.time.LocalDate;
 

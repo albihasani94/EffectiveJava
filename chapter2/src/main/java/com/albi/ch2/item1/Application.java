@@ -1,4 +1,4 @@
-package item1;
+package com.albi.ch2.item1;
 
 //Item 1: Consider static factory methods instead of constructors
 public class Application {
