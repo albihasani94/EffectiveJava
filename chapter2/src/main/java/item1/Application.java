@@ -13,7 +13,7 @@ public class Application {
         System.out.println(wagonTrackingDataCurrentLocation);
 
         //Check that objects are created only once for each boolean
-        System.out.println("Testing evaluation with static factory method");
+        System.out.println("Testing evaluation with static factory method. Values are created only once each");
         Evaluation.fromBooleanToInt(true);
         Evaluation.fromBooleanToInt(false);
         Evaluation.fromBooleanToInt(false);
