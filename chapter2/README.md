@@ -56,3 +56,10 @@ each time a serialized instance is deserialized, a new instance will be created.
 
 A third way to implement a singleton is to declare a single-element enum. It is guaranteed against multiple
 instantiations. This makes a single-element enum type often the best way to implement a singleton.
+
+## Item 4: Enforce noninstantantiabality with a private constructor
+
+We are talking about utility classes. These classes are not designed to be instantiated. But the compiler
+provides a public, default no-arg constructor. To make this kind of class noninstantiable, we add a private constructor.
+
+You can throw an `AssertionError` in case the constructor is called accidentally from within the class.
