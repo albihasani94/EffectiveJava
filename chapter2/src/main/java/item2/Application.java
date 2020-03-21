@@ -6,7 +6,8 @@ import java.time.LocalDate;
 public class Application {
 
     public static void main(String[] args) {
-        Book book = new Book.Builder("Effective Java 3rd Edition")
+        Book book = new Book.Builder()
+                .withTitle("Effective Java 3rd Edition")
                 .withAuthor("Joshua Bloch")
                 .withReleaseDate(LocalDate.of(2018, 1, 1))
                 .build();

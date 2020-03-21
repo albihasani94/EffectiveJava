@@ -22,3 +22,17 @@ There are three essential components in a service provider framework:
 - a service access API, which clients use to obtain instances of the service
 
 ## Item 2: Consider a builder when faces with many constructor parameters
+
+Static factories and constructors share a lmitation: they do not scale well to large numbers of optional parameters.
+
+Early alternatives: telescoping constructor pattern (too many constructors), javabean setters (imposes mutability).
+
+Real talk: the Builder pattern.
+
+The builder is typically a static member class of the class it builds. 
+
+This pattern allows named optional parameters, and it is well suited to class hierarchies. A minor bonus is that
+builders can have multiple varargs parameters because each paramters is specified in its own method.
+
+In summary, the Builder pattern is a good choice when designing classes whose constructors or static factories would
+have more than a handful of parameters.
