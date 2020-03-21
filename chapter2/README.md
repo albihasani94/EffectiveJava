@@ -36,3 +36,23 @@ builders can have multiple varargs parameters because each paramters is specifie
 
 In summary, the Builder pattern is a good choice when designing classes whose constructors or static factories would
 have more than a handful of parameters.
+
+## Item 3: Enforce the singleton property with a private constructor or enum type
+
+A singleton is instantiated only once.
+
+There are two common ways to implement singletons. Both are based on keeping the constructor private and exporting a
+public static member to provide access to the instance.
+
+The first way allows a public static final field to be the instance being accessed. The second way makes this field
+private and adds a public static factory method.
+
+The instance will exist only once since the class is initialized. There is one caveat though; a privileged client
+can invoke the private constructor refectively with the aid of AccessibleObject.setAccesssible method.
+
+To make a singleton class that uses one of these two approaches serializable implementing the `Serializable` interface
+is not enough. You should declare all instance fields `transient` and provide a `readResolve` method. Otherwise,
+each time a serialized instance is deserialized, a new instance will be created.
+
+A third way to implement a singleton is to declare a single-element enum. It is guaranteed against multiple
+instantiations. This makes a single-element enum type often the best way to implement a singleton.
