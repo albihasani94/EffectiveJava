@@ -77,3 +77,13 @@ service class and is injected into the service instance when it is created.
 In summary, do not use a singleton or static utility to implement a class that depends on one or more underlying
 resources whose behaviour affects that of the class, and do not have the class create these resources directly.
 Instead, pass the resources, or factories to create them, into the constructor/static factory/builder.
+
+## Item 6: Avoid creating unnecessary objects
+
+It is often appropriate to reuse a single object instead of creating a new functionally equivalent object each 
+time it is needed. You can often avoid creating unnecessary objects by using static factory methods.
+
+If you need an expensive object repeatedly, it may be advisable to cache it for reuse. For example, every call
+to `keySet` on a given Map may return the same Set instance.
+
+Another way to create unnecessary objects is autoboxing. Be careful of mixing primitives and boxed primitive types.
