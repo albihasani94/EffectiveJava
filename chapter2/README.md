@@ -134,3 +134,16 @@ each instance when it is no longer needed.
 
 There are two legitimate uses of finalizers: they act as a safety net in case the owner of a resource neglects
 to call its close method, and native peers. A native peer is a native (non-Java) object.
+
+## Item 9: Prefer try-with-resources to try-finally
+
+Historically, a try-finally statement has been the best way to guarantee that a resource would be closed
+properly, even in the face of an exception or return. This gets ugly fast when there are two or more resources
+at play.
+
+The finally clause can also throw exceptions. If an exception were to be thrown in the running code, and then
+the finally clause also threw an exception, there would be no trace of the first exception.
+
+Java 7 introduced the try-with-resources statement. To be usable with this construct, a resource must implement
+the AutoCloseable interface. If exception are thrown both by the running code and the close method, the former
+would still appear in the stacktrace and be suppressed.
