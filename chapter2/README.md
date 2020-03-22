@@ -108,3 +108,29 @@ caches as a `WeakHashMap`. This will result in entries removed automatically aft
 A third common source of memory leaks is listeners and other callbacks. Remember to deregister them explicitly, or
 solve it by ensuring to store only weak references to them, for instance, by storing them only as
 keys in a `WeakHashMap`.
+
+## Item 8: Avoid finalizers and cleansers
+
+Finalizers are unpredictable, often dangerous, and generally unnecessary. Cleaners are less dangerous
+than finalizers, but still unpredictable, slow, and generally unnecessary. The main problem is that the JVM
+does not guarantee that the finalizers will run promptly; it does not even guarantee that they will run at all.
+It is likely that a program will terminate without running them on some objects that are no longer
+reachable. As a result, you should never depend on a finalizer or cleaner to update persistent state.
+
+They have a performance penalty compared to using AutoCloseable, try-with-resources, and letting the garbage
+collector reclaiming an object.
+
+Finalizers have a serious security problem. They open the class up to finalizer attacks. If an exception
+is thrown from a constructor or its serialization equivalents, the readObject and readResolve methods,
+the finalizer of a malicious subclass can run on the partially constructed object that should have not been created.
+This finalizer can record a reference to the object in a static field, preventing it from being garbage collected.
+
+Throwing an exception from a constructor should be sufficient to prevent an object from coming into existence.
+In the presence of finalizers, it is not. Final classes are naturally immune, because they don't have subclasses.
+To protect nonfinal classes from finalizer attacks, write a final `finalize` method that does nothing.
+
+The suggested approach: make your class imlement AutoCloseable, and require its clients to invoke close on
+each instance when it is no longer needed.
+
+There are two legitimate uses of finalizers: they act as a safety net in case the owner of a resource neglects
+to call its close method, and native peers. A native peer is a native (non-Java) object.
