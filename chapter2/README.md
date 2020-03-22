@@ -63,3 +63,17 @@ We are talking about utility classes. These classes are not designed to be insta
 provides a public, default no-arg constructor. To make this kind of class noninstantiable, we add a private constructor.
 
 You can throw an `AssertionError` in case the constructor is called accidentally from within the class.
+
+## Item 5: Prefer dependency injection to hardwiring resources
+
+Static utility classes and singletons are inappropriate for classes whose behavior is parametrized by
+an underlying resource. We want the ability to support multiple instances of the class, each of which
+uses the resource desired by the client.
+
+A simple pattern that satisfies this requirement is to pass the resource into the constructor when
+creating a new instance. This is one form of dependency injection. The resource is a dependency of the
+service class and is injected into the service instance when it is created.
+
+In summary, do not use a singleton or static utility to implement a class that depends on one or more underlying
+resources whose behaviour affects that of the class, and do not have the class create these resources directly.
+Instead, pass the resources, or factories to create them, into the constructor/static factory/builder.
