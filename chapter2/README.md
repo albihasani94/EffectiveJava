@@ -87,3 +87,24 @@ If you need an expensive object repeatedly, it may be advisable to cache it for 
 to `keySet` on a given Map may return the same Set instance.
 
 Another way to create unnecessary objects is autoboxing. Be careful of mixing primitives and boxed primitive types.
+
+## Item 7: Eliminate obsolete object references
+
+An obsolete reference is simply a reference that will never be dereferenced again. If an object reference
+is unintentionally retained, not only is that ojbject excluded from garbage collection, but so are
+any objects referenced by that object, and so on.
+
+Fix: null out references once they become obsolete. This should rather be an exception than the norm.
+The best way to eliminate an obsolete reference is to let the variable that contained the reference
+fall out of scope.
+
+When should you null out a reference? When a portion of an object (Stack) becomes inactive (popped).
+Whenever a class manages its own memory, the programmer should be alert for memory leaks.
+
+Another common source of memory leaks is caches. If you want to implement a cache for which an entry is
+relevant exactly so long as there are references to its key outside of the cache, represent the
+caches as a `WeakHashMap`. This will result in entries removed automatically after they become obsolete.
+
+A third common source of memory leaks is listeners and other callbacks. Remember to deregister them explicitly, or
+solve it by ensuring to store only weak references to them, for instance, by storing them only as
+keys in a `WeakHashMap`.
