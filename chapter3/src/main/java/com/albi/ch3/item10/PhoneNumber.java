@@ -5,7 +5,7 @@ import java.util.Objects;
 public final class PhoneNumber {
     private final short areaCode, prefix, lineNum;
 
-    public PhoneNumber(short areaCode, short prefix, short lineNum) {
+    public PhoneNumber(int areaCode, int prefix, int lineNum) {
         this.areaCode = rangeCheck(areaCode, 999, "area code");
         this.prefix = rangeCheck(prefix, 999, "prefix");
         this.lineNum = rangeCheck(lineNum, 9999, "line num");

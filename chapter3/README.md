@@ -41,3 +41,5 @@ fields for equality using the static method `Objects.equals(Object, Object)`.
 Remember, always override hashCode when overriding equals.
 
 ## Item 11: Always override hashCode when you override equals
+
+
