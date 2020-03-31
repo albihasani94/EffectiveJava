@@ -68,3 +68,15 @@ If a class is immutable and the cost of computing the hash code is significant, 
 to cache the hash code in the object rather than recalculating it each time it is requested.
 
 To sum up, you must override hashCode everytime you override equals, or the program will not run correctly.
+
+## Item 12: Always override toString
+
+If you provide a good toString method, generating a useful diagnostic message becomes easier.
+When practical, the toString method should return all of the interesting information
+contained in the object.
+
+It is good to provide some documentation on the format of the output, as programmers may depend on this string.
+
+You should provide accessors to prevent the String to become the API by parsing.
+
+It makes no sense to write a toString method for a static utility class, nor for an enum type.
