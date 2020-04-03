@@ -80,3 +80,24 @@ It is good to provide some documentation on the format of the output, as program
 You should provide accessors to prevent the String to become the API by parsing.
 
 It makes no sense to write a toString method for a static utility class, nor for an enum type.
+
+## Item 13: Override clone judiciously
+
+Cloneable determines the behavior of Object's protected `clone` implementation. If a class implements Cloneable,
+its clone method retursn a field-by-field copy of the object; otherwise it throws CloneNotSupportedException.
+This is atypical for an interface.
+
+In practice, a class implementing Cloneable is expected to provide a properly functioning public clone method.
+
+By convention, the object returned by this method should be obtained by calling super.clone.
+
+The clone method functions as a constructor; you must ensure that it does no harm to the original object and that
+it properly estabilishes invariants on the clone.
+
+All classes that implement Cloneable should override clone with a public method whose return type
+is the class itself. This method should first call super.clone, then fix any fields that need fixing.
+This means copying any mutable objects of the object and replacing the clone's references
+to these objects with references to their copies.
+
+Finally, a better approach to object copying is to provide a copy constructor or factory.
+As an exception, arrays are best copied with the clone method.
