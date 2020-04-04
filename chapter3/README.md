@@ -101,3 +101,17 @@ to these objects with references to their copies.
 
 Finally, a better approach to object copying is to provide a copy constructor or factory.
 As an exception, arrays are best copied with the clone method.
+
+## Item 14: Consider implementing Comparable
+
+By implementing the Comparable interface, a class indicates that its instances have a natural ordering.
+Sorting an array of objects that do so is as simples as: `Arrays.sort(a)`.
+
+Classes that depend on comparison include the sorted collections TreeSet and TreeMap and the utility
+classes Collections and Arrays, which contain searching and sorting algorithms.
+
+This interface has a single compareTo method. In this method, fields are compared for order
+rather than equality. Use of the relational operators < and > in compareTo methods is verbose
+and error-prone. Start by comparing the most significant field. If the result is equal, continue with the next one.
+
+The Comparator interface is a bit more concise, but may be slower.
