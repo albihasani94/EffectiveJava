@@ -36,3 +36,25 @@ for each distinct value.
 
 In conclusion, resist the urge to write a setter for every getter ;)
 
+## Item 18: Favor composition over inheritance
+
+Unlike method invocation, inheritance violates encapsulation. A subclass depends on the implementation details
+of its superclass for its proper function.
+
+Without knowing the superclass methods internals, you can add strange behaviour by overriding them.
+Re-implementing superclass methods is often time-consuming, error-prone, and may reduce performance.
+Additionally, some methods cannot be implemented without access to private fields inaccessible to the subclass.
+
+A danger of overriding methods is that superclass methods may acquire new functionality in subsequent releases.
+In that case, the overriding method has to be maintained as well, adding to costs and having stability implications.
+
+Composition is a much safer approach. You can achieve it by adding a private fields that references an instance
+of the existing class.
+
+Instead of extending the existing class, create a Forwarding class that wraps the existing class and
+create a delegate of each of its methods. Then, you can extend the forwarding class to decorate the methods.
+
+Inheritance is appropriate only in circumstances where the subclass really is a subtype of the superclass.
+
+Additionally, inheritance propagates any flaws in the superclass's API, while composition lets you desing a new API
+that hides these flaws.
