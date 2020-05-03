@@ -5,3 +5,4 @@
 - [Chapter 4. Classes and Interfaces](./chapter4)
 - [Chapter 5. Generics](./chapter5)
 - [Chapter 6. Enums and Annotations](./chapter6)
+- [Chapter 7. Lambdas and Streams](./chapter7)
