@@ -6,3 +6,5 @@
 - [Chapter 5. Generics](./chapter5)
 - [Chapter 6. Enums and Annotations](./chapter6)
 - [Chapter 7. Lambdas and Streams](./chapter7)
+- [Chapter 8. Methods](./chapter8)
+
